@@ -21,7 +21,7 @@ app.post("/todo", (req, res) => {
     
     data.id = idd
     todos.push(data)
-    
+    res.send(data)
 
 })
 
