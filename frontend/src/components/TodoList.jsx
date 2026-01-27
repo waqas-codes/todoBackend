@@ -8,7 +8,7 @@ const TodoList = ({todo}) => {
     try {
       const res = await axios.delete(`http://localhost:3001/todo/${id}`)
     } catch (error) {
-      console.log(error)
+      console.log("the error is :", error)
     }
   }
   console.log(todo)
