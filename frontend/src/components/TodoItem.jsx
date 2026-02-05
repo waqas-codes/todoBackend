@@ -10,6 +10,7 @@ const TodoItem = ({ id, title }) => {
   }
 
   const handleEdit = () => {
+    console.log(id)
     setEditTodo({id, title})
     // Todo({ id, title });
   }

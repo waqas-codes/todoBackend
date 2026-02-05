@@ -34,12 +34,13 @@ function App() {
   }
 
   const updateTodo = async (id, todo) => {
+    console.log("not updated item: ",id, todo)
     try {
       const res = await axios.patch(`http://localhost:3001/todo/${id}`, todo)
     setItem(prev => 
-      prev.map(item => item.id === id ? res.data : item)
+      prev.map(item => item.id === id ? res.data[0] : item)
     )
-    console.log(item)
+    console.log("updated item :",res)
     } catch (error) {
       console.log(error)
     }

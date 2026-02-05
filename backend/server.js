@@ -32,12 +32,12 @@ app.patch("/todo/:id", (req, res) => {
 
     const todo = todos.find(t => t.id == id)
 
-    if(!todo) res.status(404).send("todo was not found!")
+    if(!todo) return res.status(404).send("todo was not found!")
 
     if(title !== undefined) todo.title = title
     if(completed !== undefined) todo.completed = completed
 
-    res.send(todos)
+    res.send(todo)
 })
 
 app.delete("/todo/:id", (req, res) => {
