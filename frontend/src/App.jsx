@@ -26,16 +26,26 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3001/todo/${id}`)
+      await axios.delete(`http://localhost:3001/todo/${id}`)
       setItem(prev => prev.filter(todo => todo.id !== id));
     } catch (error) {
       console.log("the error is :", error)
     }
   }
+  const updateTodo = async (id, todo) => {
+    try {
+      const res = await axios.put(`http://localhost:3001/todo/${id}`, todo)
+    setItem(prev => 
+      prev.map(item => item.id === id ? res.data : item)
+    )
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   return (
-    <todoContext.Provider value = {{addTodos, deleteTodo, item}}>
+    <todoContext.Provider value = {{addTodos, deleteTodo, updateTodo, item}}>
       <div className="min-h-screen flex items-center justify-center 
       bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 
