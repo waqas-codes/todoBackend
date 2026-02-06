@@ -3,14 +3,14 @@ import { todoContext } from "../todoContext/TodoContext";
 import { useContext, useState } from "react";
 const TodoItem = ({ id, title }) => {
   
-  const { deleteTodo, updateTodo } = useContext(todoContext);
+  const { deleteTodo, setEditTodo } = useContext(todoContext);
   const [checked, setChecked] = useState(false)
   const handleClick = () => {
     deleteTodo(id)
   }
 
   const handleEdit = () => {
-    
+    setEditTodo({ id, title });
   }
     return (
     

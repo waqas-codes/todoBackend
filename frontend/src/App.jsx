@@ -8,7 +8,7 @@ import { todoContext } from "./todoContext/TodoContext";
 
 function App() {
   const [item, setItem] = useState([])
-
+  const [editTodo, setEditTodo] = useState(null)
   const fetchTodos = () => {
     axios.get("http://localhost:3001/todo/")
       .then(res => setItem(res.data))
@@ -45,7 +45,7 @@ function App() {
 
 
   return (
-    <todoContext.Provider value = {{addTodos, deleteTodo, updateTodo, item}}>
+    <todoContext.Provider value = {{addTodos, deleteTodo, updateTodo, item, editTodo, setEditTodo}}>
       <div className="min-h-screen flex items-center justify-center 
       bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 

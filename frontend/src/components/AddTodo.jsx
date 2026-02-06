@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { todoContext } from "../todoContext/TodoContext";
 
 const AddTodo = ({}) => {
   const [title, setTitle] = useState("")
-  const {addTodos} = useContext(todoContext)
+  const {addTodos, editTodo} = useContext(todoContext)
+  const inputRef = useRef()
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!title.trim()) return;
@@ -22,6 +23,13 @@ const AddTodo = ({}) => {
     }
   }
 
+  useEffect(() => {
+  if (editTodo) {
+    setTitle(editTodo.title);
+    inputRef.current.focus();
+  }
+}, [editTodo]);
+
     return (
   
        <form action="" onSubmit={handleSubmit} className="flex items-center bg-white/30 
@@ -30,6 +38,7 @@ const AddTodo = ({}) => {
             text-white placeholder-white/60 outline-none"
             placeholder="add a new todo..."
             value={title}
+            ref={inputRef}
             onChange={(e) => setTitle(e.target.value)}
             />
         <button 
