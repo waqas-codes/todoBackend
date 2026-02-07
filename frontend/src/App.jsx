@@ -35,7 +35,7 @@ function App() {
 
 
   return (
-    <todoContext.Provider value = {{addTodos, deleteTodo}}>
+    <todoContext.Provider value = {{addTodos, deleteTodo, item}}>
       <div className="min-h-screen flex items-center justify-center 
       bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 
@@ -43,8 +43,8 @@ function App() {
         bg-white/20 backdrop-blur-xl shadow-2xl border border-white/30">
 
         <Header />
-        <AddTodo onAdd={addTodos} />
-        <TodoList todo={item} />
+        <AddTodo />
+        <TodoList />
         <Footer />
       </div>
     </div>

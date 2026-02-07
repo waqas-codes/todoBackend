@@ -1,9 +1,10 @@
 import axios from "axios";
 import { todoContext } from "../todoContext/TodoContext";
-import { useContext } from "react";
-const TodoItem = ({ id, title, completed }) => {
+import { useContext, useState } from "react";
+const TodoItem = ({ id, title }) => {
   
   const { deleteTodo } = useContext(todoContext);
+  const [checked, setChecked] = useState(false)
   const handleClick = () => {
     deleteTodo(id)
   }
@@ -15,8 +16,11 @@ const TodoItem = ({ id, title, completed }) => {
         hover:bg-white/35 transition">
   
         <div className="flex items-center gap-3">
-          <input type="checkbox" defaultChecked={completed} />
-          <span className={completed ? "line-through opacity-60" : ""}>
+          <input type="checkbox" 
+          checked={checked}
+          onChange={(e) => setChecked(e.target.value)}
+          />
+          <span className={checked ? "line-through opacity-60" : ""}>
             {title}
           </span>
         </div>

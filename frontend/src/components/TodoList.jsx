@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { todoContext } from "../todoContext/TodoContext";
 import axios from 'axios'
 import TodoItem from "./TodoItem";
 
-const TodoList = ({todo, onDelete}) => {
-
-  // const handleRemove = async (id) => {
-  //   onDelete(id)
-  // }
+const TodoList = () => {
+const {item} = useContext(todoContext)
   
-  console.log(todo)
+  console.log(item)
   return (
     <div className="space-y-3">
-      {todo.map(t => (
+      {item.map(t => (
         <TodoItem
           key={t.id}
           id={t.id}
