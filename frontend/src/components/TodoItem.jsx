@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 const TodoItem = ({ id, title }) => {
   
   const { deleteTodo } = useContext(todoContext);
-  const [checked, setChecked] = useState(false)
+  // const [checked, setChecked] = useState(false)
   const handleClick = () => {
     deleteTodo(id)
   }
