@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { todoContext } from "../todoContext/TodoContext";
 
-const AddTodo = ({onAdd}) => {
+const AddTodo = ({}) => {
   const [title, setTitle] = useState("")
-    
+  const {addTodos} = useContext(todoContext)
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!title.trim()) return;
@@ -14,7 +15,7 @@ const AddTodo = ({onAdd}) => {
         completed: false
       })
       console.log(res)
-      onAdd(res.data)
+      addTodos(res.data)
       setTitle("")
     } catch (error) {
       console.log(error)

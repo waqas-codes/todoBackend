@@ -1,9 +1,11 @@
 import axios from "axios";
-
-const TodoItem = ({ id, onDelete, title, completed }) => {
+import { todoContext } from "../todoContext/TodoContext";
+import { useContext } from "react";
+const TodoItem = ({ id, title, completed }) => {
   
+  const { deleteTodo } = useContext(todoContext);
   const handleClick = () => {
-    onDelete(id)
+    deleteTodo(id)
   }
     return (
     

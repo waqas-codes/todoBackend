@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import TodoItem from "./TodoItem";
 
-const TodoList = ({todo}) => {
+const TodoList = ({todo, onDelete}) => {
 
-  const handleRemove = async (id) => {
-    try {
-      const res = await axios.delete(`http://localhost:3001/todo/${id}`)
-    } catch (error) {
-      console.log("the error is :", error)
-    }
-  }
+  // const handleRemove = async (id) => {
+  //   onDelete(id)
+  // }
+  
   console.log(todo)
   return (
     <div className="space-y-3">
@@ -18,7 +15,7 @@ const TodoList = ({todo}) => {
         <TodoItem
           key={t.id}
           id={t.id}
-          onDelete={handleRemove}
+          // onDelete={handleRemove}
           title={t.title}
           completed={t.completed}
           />
