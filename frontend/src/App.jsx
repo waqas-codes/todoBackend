@@ -39,7 +39,7 @@ function App() {
     setItem(prev => 
       prev.map(item => item.id === id ? res.data : item)
     )
-    console.log(res)
+    console.log(item)
     } catch (error) {
       console.log(error)
     }
