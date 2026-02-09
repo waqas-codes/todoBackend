@@ -32,12 +32,14 @@ function App() {
       console.log("the error is :", error)
     }
   }
+
   const updateTodo = async (id, todo) => {
     try {
-      const res = await axios.put(`http://localhost:3001/todo/${id}`, todo)
+      const res = await axios.patch(`http://localhost:3001/todo/${id}`, todo)
     setItem(prev => 
       prev.map(item => item.id === id ? res.data : item)
     )
+    console.log(res)
     } catch (error) {
       console.log(error)
     }

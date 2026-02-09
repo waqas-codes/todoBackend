@@ -32,7 +32,6 @@ app.patch("/todo/:id", (req, res) => {
 
     const todo = todos.find(t => t.id == id)
 
-
     if(!todo) res.status(404).send("todo was not found!")
 
     if(title !== undefined) todo.title = title
