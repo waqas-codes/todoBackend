@@ -3,17 +3,27 @@ import { todoContext } from "../todoContext/TodoContext";
 import { useContext, useState } from "react";
 const TodoItem = ({ id, title }) => {
   
-  const { deleteTodo, setEditTodo } = useContext(todoContext);
+  const { deleteTodo, setEditTodo, setItem } = useContext(todoContext);
   const [checked, setChecked] = useState(false)
   const handleClick = () => {
     deleteTodo(id)
   }
 
   const handleEdit = () => {
-    console.log(id)
-    setEditTodo({id, title})
-    // Todo({ id, title });
+    if(checked === false) setEditTodo({id, title})
   }
+
+  const handleCheck = (e) => {
+    // e.praventDefault()
+    setItem(prev =>
+      prev.map(todo =>
+        todo.id === id
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+    );
+    setChecked(e.target.checked)
+  };
     return (
     
       <div className="flex justify-between items-center
@@ -24,7 +34,7 @@ const TodoItem = ({ id, title }) => {
         <div className="flex items-center gap-3 w-full">
           <input type="checkbox" 
           checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
+          onChange={handleCheck}
           />
           <span className={checked ? "line-through opacity-60" : ""}>
             {title}

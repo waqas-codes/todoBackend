@@ -34,13 +34,11 @@ function App() {
   }
 
   const updateTodo = async (id, todo) => {
-    console.log("not updated item: ",id, todo)
     try {
       const res = await axios.patch(`http://localhost:3001/todo/${id}`, todo)
     setItem(prev => 
-      prev.map(item => item.id === id ? res.data[0] : item)
+      prev.map(item => item.id === id ? res.data : item)
     )
-    console.log("updated item :",res)
     } catch (error) {
       console.log(error)
     }
@@ -48,7 +46,7 @@ function App() {
 
 
   return (
-    <todoContext.Provider value = {{addTodos, deleteTodo, updateTodo, item, editTodo, setEditTodo}}>
+    <todoContext.Provider value = {{addTodos, deleteTodo, updateTodo, item, setItem, editTodo, setEditTodo}}>
       <div className="min-h-screen flex items-center justify-center 
       bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 
